@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+#file-upload {
+  display: none;
+}
+.custom-file-upload {
+  display: inline-block;
+  cursor: pointer;
+}
+
+
+
+.custom-shape-divider-bottom-1685519448 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1685519448 svg {
+  position: relative;
+  display: block;
+  width: calc(144% + 1.3px);
+  height: 201px;
+}
+
+.custom-shape-divider-bottom-1685519448 .shape-fill {
+  fill: rgb(255, 255, 255);
+}
+
+.custom-shape-divider-bottom-1685519450 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1685519450 svg {
+  position: relative;
+  display: block;
+  width: calc(144% + 1.3px);
+  height: 201px;
+}
+
+.custom-shape-divider-bottom-1685519450 .shape-fill {
+  fill: rgb(15, 23, 42);
+}
+
+.fontPara {
+  font-family: Tahoma;
+}
