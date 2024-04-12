@@ -20,10 +20,6 @@ function MyState(props) {
         }
     }
 
-
-    // Search Bar State 
-    // const [searchkey, setSearchkey] = useState('')
-
     // Loading State
     const [loading, setLoading] = useState(false);
 
@@ -93,8 +89,6 @@ function MyState(props) {
       // user State 
     const [getAllUser, setGetAllUser] = useState([]);
 
-
-    // console.log(getAllUser)
 
 
     /**========================================================================

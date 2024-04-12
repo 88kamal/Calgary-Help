@@ -93,13 +93,6 @@ export default function Nav() {
                     </Link>
                     <div className="flex items-center gap-4">
                         <div className=" hidden lg:block">{navList}</div>
-
-                        {/* ShareModal  */}
-                        {/* <div className=" hidden lg:block md:block sm:block">
-              <ShareModal />
-            </div> */}
-
-                        {/* Light And Dark  */}
                         <div className="">
                             {mode === 'light' ?
                                 <button className={`bg-gray-300 p-1.5 rounded-full cursor-pointer ${mode === 'dark' ? 'text-white' : 'text-black'}`}>
@@ -149,15 +142,9 @@ export default function Nav() {
                             }
                         </div>
 
-                        {/* SearchBox  */}
-                        {/* <div className="">
-              <SearchBox />
-            </div> */}
-
                         {/* ToggleMode  */}
                         <div className="">
                             <IconButton
-                                // variant="text"
                                 className="ml-auto h-10 w-10 text-inherit rounded-lg lg:hidden"
                                 ripple={false}
                                 onClick={() => setOpenNav(!openNav)}
