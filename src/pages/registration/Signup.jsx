@@ -10,10 +10,10 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import myContext from "../../context/myContext";
 import toast from 'react-hot-toast';
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, fireDB, storage } from "../../firebase/FirebaseConfig";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import Loader from "../../components/loader/Loader";
 
 
@@ -116,9 +116,10 @@ export default function Signup() {
                 try {
                     // Add All User Details (user, image, uid) [addDoc Function]
                     addDoc(userRef, {
-                        user,
-                        image: url,
+                        name: name,
                         uid: users.user.uid,
+                        email: users.user.email,
+                        image: url,
                     })
                 } catch (error) {
                     console.log(error)
@@ -129,6 +130,38 @@ export default function Signup() {
             });
         });
     }
+
+
+    const googleProvider = new GoogleAuthProvider();
+
+    const signInWithGoogle = async () => {
+        try {
+            const res = await signInWithPopup(auth, googleProvider);
+            const users = res.user;
+            // console.log(user);
+            const q = query(collection(fireDB, "user"), where("uid", "==", users.uid));
+            const docs = await getDocs(q);
+            if (docs.docs.length === 0) {
+                await addDoc(collection(fireDB, "user"), {
+                    uid: users.uid,
+                    name: users.displayName,
+                    image: users.photoURL,
+                    authProvider: "google",
+                    email: users.email,
+                });
+            }
+            const user = {
+                email : users.email,
+                uid : users.uid,
+            }
+            localStorage.setItem('user', JSON.stringify(user));
+            toast.success('Login Success');
+            navigate('/dashboard')
+        } catch (err) {
+            console.log(err)
+            alert(err.message);
+        }
+    };
 
 
 
@@ -232,6 +265,21 @@ export default function Signup() {
                             }}>
                             Signup
                         </Button>
+
+                        <div className="flex items-center justify-center">
+                            <button
+                                onClick={signInWithGoogle}
+                                type="button"
+                                className="px-4 py-2 border w-full border-gray-400  gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 flex justify-center hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
+                                <img
+                                    className="w-6 h-6"
+                                    src="https://www.svgrepo.com/show/475656/google-color.svg"
+                                    loading="lazy"
+                                    alt="google logo"
+                                />
+                                <span>Signup with Google</span>
+                            </button>
+                        </div>
 
                         {/* text  */}
                         <Typography

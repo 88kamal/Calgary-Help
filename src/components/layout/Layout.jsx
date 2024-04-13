@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
             <Navbar />
 
             {/* Main Content  */}
-            <div className="main-Conten">
+            <div className="main-Conten min-h-screen">
                 {children}
             </div>
 

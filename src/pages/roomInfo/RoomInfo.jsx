@@ -39,6 +39,7 @@ const RoomInfo = () => {
 
     useEffect(() => {
         getRoomData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id, userId]);
 
 
@@ -68,7 +69,7 @@ const RoomInfo = () => {
         //     userId: userDetail.userId,
 
         // })
-        if (userDetail.name == "" || userDetail.email == "" || user.phoneNumber == "") {
+        if (userDetail.name == "" || userDetail.email == "" || userDetail.phoneNumber == "") {
             return toast.error("All Fields are required")
 
         }

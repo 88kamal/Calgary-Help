@@ -42,7 +42,7 @@ const CreateRoom = () => {
         image2: "",
         image3: "",
         image4: "",
-        userId: user?.user?.uid,
+        userId: user?.uid,
         date: new Date().toLocaleString(
             "en-US",
             {

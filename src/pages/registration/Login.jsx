@@ -9,11 +9,12 @@ import {
     Typography,
 } from "@material-tailwind/react";
 import { Link, useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase/FirebaseConfig";
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, fireDB } from "../../firebase/FirebaseConfig";
 import toast from 'react-hot-toast';
 import myContext from "../../context/myContext";
 import Loader from "../../components/loader/Loader";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 
 export default function Login() {
     const context = useContext(myContext);
@@ -39,8 +40,13 @@ export default function Login() {
             // Toast success message 
             toast.success('Login Success')
 
+            const users = {
+                email : result.user.email,
+                uid : result.user.uid,
+            }
+
             // store user detail in localStorage 
-            localStorage.setItem('user', JSON.stringify(result));
+            localStorage.setItem('user', JSON.stringify(users));
 
             // navigate "/profile"
             navigate('/dashboard');
@@ -51,9 +57,42 @@ export default function Login() {
         }
     }
 
+
+    const googleProvider = new GoogleAuthProvider();
+
+    const signInWithGoogle = async () => {
+        try {
+            const res = await signInWithPopup(auth, googleProvider);
+            const users = res.user;
+            // console.log(user);
+            const q = query(collection(fireDB, "user"), where("uid", "==", users.uid));
+            const docs = await getDocs(q);
+            if (docs.docs.length === 0) {
+                await addDoc(collection(fireDB, "user"), {
+                    uid: users.uid,
+                    name: users.displayName,
+                    image: users.photoURL,
+                    authProvider: "google",
+                    email: users.email,
+                });
+            }
+
+            const user = {
+                email : users.email,
+                uid : users.uid,
+            }
+            localStorage.setItem('user', JSON.stringify(user));
+            toast.success('Login Success');
+            navigate('/dashboard')
+        } catch (err) {
+            console.log(err)
+            alert(err.message);
+        }
+    };
+
     return (
         <div className="flex justify-center items-center h-screen  ">
-            {loading && <Loader/>}
+            {loading && <Loader />}
             {/* Card  */}
             <Card className="w-full max-w-[24rem]"
                 style={{
@@ -124,6 +163,23 @@ export default function Login() {
                             }}>
                             Login
                         </Button>
+
+                        <div className="flex items-center justify-center">
+                            <button type="button" 
+                            onClick={signInWithGoogle} 
+                            className="px-4 py-2 border w-full border-gray-400  gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 flex justify-center hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
+                                <img
+                                    className="w-6 h-6"
+                                    src="https://www.svgrepo.com/show/475656/google-color.svg"
+                                    loading="lazy"
+                                    alt="google logo"
+                                />
+                                <span>Login with Google</span>
+                            </button>
+                        </div>
+
+
+
 
                         {/* text  */}
                         <Typography

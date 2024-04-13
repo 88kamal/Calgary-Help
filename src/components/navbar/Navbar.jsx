@@ -32,6 +32,30 @@ export default function Nav() {
                 </Link>
             </Typography>
 
+            <Typography
+                as="li"
+                variant="small"
+                color="blue-gray"
+                className={`p-1 font-semibold ${mode === 'dark' ? 'text-white' : 'text-black'} fontPara`}
+
+            >
+                <Link to={'/allroom'} className="flex items-center">
+                    All Room
+                </Link>
+            </Typography>
+
+            <Typography
+                as="li"
+                variant="small"
+                color="blue-gray"
+                className={`p-1 font-semibold ${mode === 'dark' ? 'text-white' : 'text-black'} fontPara`}
+
+            >
+                <Link to={'/job'} className="flex items-center">
+                    Job
+                </Link>
+            </Typography>
+
             {user ? "" : <Typography
                 as="li"
                 variant="small"

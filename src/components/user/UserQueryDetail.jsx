@@ -8,7 +8,7 @@ const UserQueryDetail = () => {
 
     const user = JSON.parse(localStorage.getItem("user"));
 
-    const filterData = getUserQuery.filter((obj) => obj.userId.includes(user?.user?.uid))
+    const filterData = getUserQuery.filter((obj) => obj.userId.includes(user?.uid))
 
     // console.log(filterData)
     

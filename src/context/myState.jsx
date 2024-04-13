@@ -54,39 +54,39 @@ function MyState(props) {
         }
     }
 
-     // User State
-     const [getUserQuery, setGetUserQuery] = useState([]);
+    // User State
+    const [getUserQuery, setGetUserQuery] = useState([]);
 
     //  console.log(getUserQuery)
-     /**========================================================================
-      *                          GET All Product Function
-      *========================================================================**/
- 
-     const getAllUserQueryFunction = async () => {
-         setLoading(true);
-         try {
-             const q = query(
-                 collection(fireDB, "contact"),
-                 orderBy('time')
-             );
-             const data = onSnapshot(q, (QuerySnapshot) => {
-                 let userQueryArray = [];
-                 QuerySnapshot.forEach((doc) => {
-                     userQueryArray.push({ ...doc.data(), id: doc.id });
-                 });
-                 setGetUserQuery(userQueryArray);
-                 setLoading(false);
-             });
-             return () => data;
-         } catch (error) {
-             console.log(error);
-             setLoading(false);
-         }
-     }
+    /**========================================================================
+     *                          GET All Product Function
+     *========================================================================**/
+
+    const getAllUserQueryFunction = async () => {
+        setLoading(true);
+        try {
+            const q = query(
+                collection(fireDB, "contact"),
+                orderBy('time')
+            );
+            const data = onSnapshot(q, (QuerySnapshot) => {
+                let userQueryArray = [];
+                QuerySnapshot.forEach((doc) => {
+                    userQueryArray.push({ ...doc.data(), id: doc.id });
+                });
+                setGetUserQuery(userQueryArray);
+                setLoading(false);
+            });
+            return () => data;
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+        }
+    }
 
 
 
-      // user State 
+    // user State 
     const [getAllUser, setGetAllUser] = useState([]);
 
 
@@ -116,14 +116,56 @@ function MyState(props) {
         }
     }
 
+
+    const [getAllJob, setGetAllJob] = useState([]);
+
+
+    /**========================================================================
+     *                           GET All Job Function
+     *========================================================================**/
+
+    const getAllJobFunction = async () => {
+        setLoading(true);
+        try {
+            const q = query(
+                collection(fireDB, "job"),
+                orderBy("time")
+            );
+            const data = onSnapshot(q, (QuerySnapshot) => {
+                let jobArray = [];
+                QuerySnapshot.forEach((doc) => {
+                    jobArray.push({ ...doc.data(), id: doc.id });
+                });
+                setGetAllJob(jobArray);
+                setLoading(false);
+            });
+            return () => data;
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+        }
+    }
+
     useEffect(() => {
         getAllRoomFunction();
         getAllUserQueryFunction();
         getAllUserFunction();
+        getAllJobFunction();
     }, []);
 
     return (
-        <MyContext.Provider value={{ mode, toggleMode, loading, setLoading, getAllRoom, getAllRoomFunction, getUserQuery, getAllUser }}>
+        <MyContext.Provider value={{
+            mode,
+            toggleMode,
+            loading,
+            setLoading,
+            getAllRoom,
+            getAllRoomFunction,
+            getUserQuery,
+            getAllUser,
+            getAllJob,
+            getAllJobFunction
+        }}>
             {props.children}
         </MyContext.Provider>
     )

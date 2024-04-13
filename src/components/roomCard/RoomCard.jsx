@@ -37,8 +37,8 @@ const RoomCard = () => {
                             {filterData.length > 0 ?
                                 <>
                                     {filterData.map((item, index) => {
-                                        const { id, name, price, image1, bathrooms, furnished, bedrooms, userId } = item;
-                                        console.log(item)
+                                        const { id, name, price, image1, bathrooms, furnished, bedrooms, userId, type } = item;
+                                        // console.log(item)
                                         return (
                                             <div key={index} className="p-4 w-full md:w-1/4">
                                                 <div className={`h-full shadow-md  hover:-translate-y-1 border ${mode === 'dark' ? 'border-gray-700' : 'border-gray-300'}  rounded-xl overflow-hidden shadow-md cursor-pointer`}>
@@ -56,7 +56,7 @@ const RoomCard = () => {
                                                             {name}
                                                         </h1>
                                                         <h1 className={`title-font text-lg font-medium fontPara mb-3 ${mode === 'dark' ? 'text-gray-200' : 'text-gray-900'}`}>
-                                                            ₹ {price}/month
+                                                            ₹ {price} {type === 'rent' ? '/month' : ''}
                                                         </h1>
 
                                                         <div className={`flex justify-between ${mode === 'dark' ? 'text-gray-200' : 'text-gray-900'}`}>
