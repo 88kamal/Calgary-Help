@@ -27,6 +27,8 @@ function MyState(props) {
     // User State
     const [getAllRoom, setGetAllRoom] = useState([]);
 
+    // console.log(getAllRoom)
+
 
     /**========================================================================
      *                          GET All Product Function
@@ -44,6 +46,7 @@ function MyState(props) {
                 QuerySnapshot.forEach((doc) => {
                     roomArray.push({ ...doc.data(), id: doc.id });
                 });
+                // console.log(roomArray)
                 setGetAllRoom(roomArray);
                 setLoading(false);
             });

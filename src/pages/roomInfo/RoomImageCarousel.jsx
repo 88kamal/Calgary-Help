@@ -12,22 +12,22 @@ export function RoomImageCarousel({ roomDetail }) {
             className="rounded-none mt-1 z-10"
         >
             <img
-                src={roomDetail.image1}
+                src={roomDetail != undefined && roomDetail[0]}
                 alt="image 1"
                 className="w-[100%] h-[9em] xl:h-[33em] lg:h-[18em] md:h-[20em] sm:h-[12em] rounded-lg "
             />
             <img
-                src={roomDetail.image2}
+                src={roomDetail != undefined && roomDetail[1]}
                 alt="image 2"
                 className="w-[100%] h-[9em] xl:h-[33em] lg:h-[18em]  md:h-[20em] sm:h-[12em] rounded-lg"
             />
             <img
-                src={roomDetail.image3}
+                src={roomDetail != undefined && roomDetail[2]}
                 alt="image 3"
                 className="w-[100%] h-[9em] xl:h-[33em] lg:h-[18em]  md:h-[20em] sm:h-[12em] rounded-lg"
             />
             <img
-                src={roomDetail.image4}
+                src={roomDetail != undefined && roomDetail[3]}
                 alt="image 4"
                 className="w-[100%] h-[9em] xl:h-[33em] lg:h-[18em]  md:h-[20em] sm:h-[12em] rounded-lg"
             />

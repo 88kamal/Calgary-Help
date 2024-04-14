@@ -13,6 +13,8 @@ const RoomDetail = () => {
 
     const filterData = getAllRoom.filter((obj) => obj.userId === user?.uid)
 
+    console.log(getAllRoom)
+
 
     // Delete Room 
     const deleteRoom = async (id) => {
@@ -56,7 +58,7 @@ const RoomDetail = () => {
                                     <th scope="col" className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0 border-indigo-100 text-slate-700 bg-slate-100">Action</th>
                                 </tr>
                                 {filterData.map((item, index) => {
-                                    const { id, name, price, date, image1 } = item
+                                    const { id, name, price, date, image } = item
                                     return (
                                         <tr key={index} className="text-indigo-300">
                                             <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-indigo-100 stroke-slate-500 text-slate-500 ">
@@ -64,7 +66,7 @@ const RoomDetail = () => {
                                             </td>
                                             <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-indigo-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
                                                 <div className="flex justify-center py-2">
-                                                    <img className="w-20 rounded-md " src={image1} alt="" />
+                                                    <img className="w-20 rounded-md " src={image[0]} alt="" />
                                                 </div>
                                             </td>
                                             <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-indigo-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">

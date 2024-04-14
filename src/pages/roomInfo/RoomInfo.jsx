@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import myContext from "../../context/myContext";
 import { Timestamp, addDoc, collection, doc, getDoc } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
@@ -96,7 +96,7 @@ const RoomInfo = () => {
         <Layout>
             <section className="body-font px-5 py-[20px] mx-auto">
                 <div className=" mb-3 ">
-                    <RoomImageCarousel roomDetail={room} />
+                    <RoomImageCarousel roomDetail={room?.image} />
                 </div>
 
                 <div className="">

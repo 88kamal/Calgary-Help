@@ -33,14 +33,14 @@ const AllRoom = () => {
                                <>
                                 {
                                     getAllRoom.map((item, index) => {
-                                        const { id, name, price, image1, bathrooms, furnished, bedrooms, userId, type } = item;
+                                        const { id, name, price, image, bathrooms, furnished, bedrooms, userId, type } = item;
                                         return (
                                             <div key={index} className="p-4 w-full md:w-1/4">
                                                 <div className={`h-full shadow-md  hover:-translate-y-1 border ${mode === 'dark' ? 'border-gray-700' : 'border-gray-300'}  rounded-xl overflow-hidden shadow-md cursor-pointer`}>
                                                     <img
                                                         onClick={() => navigate(`/roominfo/${id}/${userId}`)}
                                                         className="lg:h-60  h-96 w-full"
-                                                        src={image1}
+                                                        src={image[0]}
                                                         alt="img"
                                                     />
                                                     <div className="p-6">
