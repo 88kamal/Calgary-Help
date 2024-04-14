@@ -30,7 +30,7 @@ const CreateRoom = () => {
     const user = JSON.parse(localStorage.getItem("user"));
 
     const [images, setImages] = useState([]);
-    const [progress, setProgress] = useState(0);
+    // const [progress, setProgress] = useState(0);
 
     const handleFileChange = (e) => {
         const fileList = e.target.files;
