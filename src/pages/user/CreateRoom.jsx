@@ -37,10 +37,6 @@ const CreateRoom = () => {
         setImages(Array.from(fileList));
     };
 
-
-
-
-
     const [roomDetail, setRoomDetail] = useState({
         name: "",
         price: "",

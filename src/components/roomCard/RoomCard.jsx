@@ -45,7 +45,7 @@ const RoomCard = () => {
                                                     <img
                                                         onClick={() => navigate(`/roominfo/${id}/${userId}`)}
                                                         className="lg:h-60  h-96 w-full"
-                                                        src={image[0]}
+                                                        src={image != undefined && image[0]}
                                                         alt="img"
                                                     />
                                                     <div className="p-6">

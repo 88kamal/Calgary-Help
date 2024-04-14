@@ -66,7 +66,7 @@ const RoomDetail = () => {
                                             </td>
                                             <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-indigo-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
                                                 <div className="flex justify-center py-2">
-                                                    <img className="w-20 rounded-md " src={image[0]} alt="" />
+                                                    <img className="w-20 rounded-md " src={image != undefined && image[0]} alt="" />
                                                 </div>
                                             </td>
                                             <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-indigo-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
